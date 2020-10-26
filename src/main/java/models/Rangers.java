@@ -22,4 +22,11 @@ public class Rangers {
     public int getBadgeNumber() {
         return badgeNumber;
     }
+
+    public  void showAnimalsByLocation(){
+
+    }
+
+    public void getAllAnimalsByRangerId(){}
+
 }
