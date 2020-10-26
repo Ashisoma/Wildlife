@@ -27,6 +27,8 @@ public class Rangers {
 
     }
 
-    public void getAllAnimalsByRangerId(){}
+    public void getAllAnimalsByRangerId(){
+
+    }
 
 }
