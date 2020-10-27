@@ -8,7 +8,7 @@ public class EndangeredTest {
 
     @Test
     public void animalInstantiatesCorrectly(){
-        Endangered firstAnimal = new Endangered("Rhino", 54,"robust");// health should be a constant
+        Endangered firstAnimal = new Endangered("hippo",56,"good",1,1);// health should be a constant
         assertEquals(true, firstAnimal instanceof Endangered);
     }
 
