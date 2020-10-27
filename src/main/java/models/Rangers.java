@@ -9,13 +9,33 @@ import java.util.List;
 public class Rangers {
     private String rangerName;
     private int contact;
-    private int badgeNumber;
+    private int badge;
     private int rangersId;
 
-    public Rangers(String rangerName, int contact, int badgeNumber) {
+    public Rangers(String rangerName, int contact, int badge) {
         this.rangerName = rangerName;
         this.contact = contact;
-        this.badgeNumber = badgeNumber;
+        this.badge = badge;
+    }
+
+    public int getRangersId() {
+        return rangersId;
+    }
+
+    public void setRangerName(String rangerName) {
+        this.rangerName = rangerName;
+    }
+
+    public void setContact(int contact) {
+        this.contact = contact;
+    }
+
+    public void setBadge(int badge) {
+        this.badge = badge;
+    }
+
+    public void setRangersId(int rangersId) {
+        this.rangersId = rangersId;
     }
 
     public Rangers() {
@@ -29,8 +49,8 @@ public class Rangers {
         return contact;
     }
 
-    public int getBadgeNumber() {
-        return badgeNumber;
+    public int getBadge() {
+        return badge;
     }
 
 

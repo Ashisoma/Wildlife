@@ -9,10 +9,29 @@ import java.util.List;
 public class Animal {
     private int id;
     private String animalName;
+    private int rangerId;
+    private int locationId;
 
-    public Animal(int id, String animalName) {
-        this.id = id;
+    public Animal(String animalName, int rangerId, int locationId) {
         this.animalName = animalName;
+        this.rangerId = rangerId;
+        this.locationId = locationId;
+    }
+
+    public int getRangerId() {
+        return rangerId;
+    }
+
+    public void setRangerId(int rangerId) {
+        this.rangerId = rangerId;
+    }
+
+    public int getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
     }
 
     public void setId(int id) {
@@ -31,23 +50,6 @@ public class Animal {
         return animalName;
     }
 
-    public void addAnimalSightedByRanger(){
 
-    }
-
-    public void getAnimalLocations(){
-
-    }
-
-    public List<Animal> getAllAnimals(){
-        String sql = "SELECT * FROM animal";
-        try(Connection con = DB.sql2o.open()){
-         return con.createQuery(sql)
-                 .executeAndFetch(Animal.class);
-        }catch (Sql2oException ex){
-            System.out.println(ex);
-           return null;
-        }
-    }
 
 }
