@@ -1,22 +1,21 @@
 package models;
 
-public class Sightings {
+public class Sightings extends Rangers{
     private String location;
-    private String rangerName;
+    //private String rangerName;
     private int animalId;
     private int dangerId;
 
     public Sightings(String location) {
         this.location = location;
+
+
     }
 
     public String getLocation() {
         return location;
     }
 
-    public String getRangerName() {
-        return rangerName;
-    }
 
     public int getAnimalId() {
         return animalId;
