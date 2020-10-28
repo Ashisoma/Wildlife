@@ -54,25 +54,4 @@ public class Rangers {
     }
 
 
-    public void getAllAnimalsByRangerId(){
-
-    }
-    public List<Object>  getAnimals(){
-        List<Object> allAnimals = new ArrayList<Object>();
-        try (Connection con = DB.sql2o.open()){
-            String sqlAnimal = "SELECT * FROM animals where rangerId=:id;";
-            List<Animal> animals = con.createQuery(sqlAnimal)
-                    .addParameter("id", this.rangersId)
-                    .executeAndFetch(Animal.class);
-            allAnimals.addAll(animals);
-
-            String sqlDanger = "SELECT * FROM endangeredanimal WHERE rangersId=:id;";
-            List<Endangered> endangereds = con.createQuery(sqlDanger)
-                    .addParameter("id", this.rangersId)
-                    .executeAndFetch(Endangered.class);
-            allAnimals.addAll(endangereds);
-        }
-        return allAnimals;
-    }
-
 }

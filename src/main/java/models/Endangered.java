@@ -8,44 +8,21 @@ public class Endangered {
     private int locationId;
     private int rangerId;
 
+
+    public static final String HEALTHY ="healthy";
+    public static final String OKAY ="okay";
+    public static final String ILL ="ill";
+    public static final String NEWBORN ="newborn";
+    public static final String YOUNG ="young";
+    public static final String ADULT ="adult";
+
     public Endangered(String dangerName, int age, String health, int locationId, int rangerId) {
         this.dangerName = dangerName;
         this.age = age;
         this.health = health;
         this.locationId = locationId;
         this.rangerId = rangerId;
-    }
 
-    public void setDangerName(String dangerName) {
-        this.dangerName = dangerName;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setHealth(String health) {
-        this.health = health;
-    }
-
-    public int getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
-    }
-
-    public int getRangerId() {
-        return rangerId;
-    }
-
-    public void setRangerId(int rangerId) {
-        this.rangerId = rangerId;
     }
 
     public String getDangerName() {
@@ -63,16 +40,4 @@ public class Endangered {
     public String getHealth() {
         return health;
     }
-
-
-    public void addAnimalBYRanger(){
-
-    }
-
-    public void getAnimalbyId(){
-
-    }
-
-    public void getAnimallocation(){}
-
 }

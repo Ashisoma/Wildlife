@@ -16,39 +16,40 @@ public class EndangeredDAO implements Sql2oEndangered{
     }
     @Override
     public List<Endangered> getAllEndangeredAnimals() {
-        String sql = "SELECT * FROM endangeredAnimals";
+        String sql = "SELECT * FROM animals WHERE type='endangered'  ";
         try(Connection con = sql2o.open()){
             return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
                     .executeAndFetch(Endangered.class);
         }catch (Sql2oException ex){
             System.out.println(ex);
             return null;
         }
     }
-
-    @Override
-    public void addEndangeredAnimal(Endangered endangered) {
-        String sql = "INSERT INTO endangeredAnimals (dangerName, health, age, rangerId, locationId) VALUES (:dangerName, :health, :age, :rangerId, :locationId)";
-        try (Connection con = sql2o.open()){
-            int id = (int) con.createQuery(sql, true)
-                    .bind(endangered)
-                    .executeUpdate()
-                    .getKey();
-            endangered.setId(id);
-        }
-
     }
+//
+//    @Override
+//    public void addEndangeredAnimal(Endangered endangered) {
+//        String sql = "INSERT INTO endangeredAnimals (dangerName, health, age, rangerId, locationId) VALUES (:dangerName, :health, :age, :rangerId, :locationId)";
+//        try (Connection con = sql2o.open()){
+//            int id = (int) con.createQuery(sql, true)
+//                    .bind(endangered)
+//                    .executeUpdate()
+//                    .getKey();
+//            endangered.setId(id);
+//        }
+//
+//    }
+//
+//    @Override
+//    public Endangered getEndangeredAnimalById(int id) {
+//       String sql = "SELECT * FROM endangeredAnimals WHERE id=:id";
+//        try (Connection conn = sql2o.open()){
+//            return conn.createQuery(sql)
+//                    .addParameter("id",id)
+//                    .executeAndFetchFirst(Endangered.class);
+//        }catch (Sql2oException ex){
+//            System.out.println(ex);
+//            return null;
+//        }
 
-    @Override
-    public Endangered getEndangeredAnimalById(int id) {
-       String sql = "SELECT * FROM endangeredAnimals WHERE id=:id";
-        try (Connection conn = sql2o.open()){
-            return conn.createQuery(sql)
-                    .addParameter("id",id)
-                    .executeAndFetchFirst(Endangered.class);
-        }catch (Sql2oException ex){
-            System.out.println(ex);
-            return null;
-        }
-    }
-}

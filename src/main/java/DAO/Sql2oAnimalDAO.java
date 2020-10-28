@@ -17,9 +17,10 @@ public class Sql2oAnimalDAO implements AnimalDAO{
 
     @Override
     public List<Animal> getAllAnimals() {
-        String sql = "SELECT * FROM animals";
+        String sql = "SELECT * FROM animals WHERE type='animal'  ";
         try(Connection con = sql2o.open()){
             return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
                     .executeAndFetch(Animal.class);
         }catch (Sql2oException ex){
             System.out.println(ex);
@@ -27,28 +28,16 @@ public class Sql2oAnimalDAO implements AnimalDAO{
         }
     }
 
-    @Override
-    public void addAnimal(Animal animal) {
-      String sql = "INSERT INTO animals (animalName, rangerId, locationId) VALUES (:animalName, :rangerId, :locationId)";
-      try (Connection con = sql2o.open()){
-          int id = (int) con.createQuery(sql, true)
-                  .bind(animal)
-                  .executeUpdate()
-          .getKey();
-          animal.setId(id);
-      }
-    }
+//    @Override
+//    public void addAnimal(Animal animal) {
+//      String sql = "INSERT INTO animals (animalName, rangerId, locationId) VALUES (:animalName, :rangerId, :locationId)";
+//      try (Connection con = sql2o.open()){
+//          int id = (int) con.createQuery(sql, true)
+//                  .bind(animal)
+//                  .executeUpdate()
+//          .getKey();
+//          animal.setId(id);
+//      }
+//    }
 
-    @Override
-    public Animal getAnimalById(int id) {
-        String sql = "SELECT * FROM animals WHERE id=:id";
-        try (Connection conn = sql2o.open()){
-            return conn.createQuery(sql)
-                    .addParameter("id",id)
-                    .executeAndFetchFirst(Animal.class);
-        }catch (Sql2oException ex){
-            System.out.println(ex);
-            return null;
-        }
-    }
 }
