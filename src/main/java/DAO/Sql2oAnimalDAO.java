@@ -28,16 +28,4 @@ public class Sql2oAnimalDAO implements AnimalDAO{
         }
     }
 
-//    @Override
-//    public void addAnimal(Animal animal) {
-//      String sql = "INSERT INTO animals (animalName, rangerId, locationId) VALUES (:animalName, :rangerId, :locationId)";
-//      try (Connection con = sql2o.open()){
-//          int id = (int) con.createQuery(sql, true)
-//                  .bind(animal)
-//                  .executeUpdate()
-//          .getKey();
-//          animal.setId(id);
-//      }
-//    }
-
 }

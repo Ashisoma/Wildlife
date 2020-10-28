@@ -14,6 +14,7 @@ public class EndangeredDAO implements Sql2oEndangered{
     public EndangeredDAO(Sql2o sql2o) {
         this.sql2o = sql2o;
     }
+
     @Override
     public List<Endangered> getAllEndangeredAnimals() {
         String sql = "SELECT * FROM animals WHERE type='endangered'  ";
@@ -26,7 +27,30 @@ public class EndangeredDAO implements Sql2oEndangered{
             return null;
         }
     }
+
+    @Override
+    public void saveAgeOfAnimal(String age) {
+        String sql ="UPDATE animals SET age=:age WHERE id=:id";
+        try (Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("age", age)
+                    .addParameter("id", Endangered.id)
+                    .executeUpdate();
+        }
+
     }
+
+    @Override
+    public void saveHealthOfAnimal(String health) {
+        String sql = "UPDATE animals SET health=:health WHERE id=:id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("health", health)
+                    .addParameter("id", Endangered.id)
+                    .executeUpdate();
+        }
+    }
+}
 //
 //    @Override
 //    public void addEndangeredAnimal(Endangered endangered) {

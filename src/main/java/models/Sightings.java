@@ -2,7 +2,7 @@ package models;
 
 import java.sql.Timestamp;
 
-public class Sightings extends Rangers{
+public class Sightings {
     private String location;
     private String rangerName;
     private int wildlifeId;
@@ -20,10 +20,7 @@ public class Sightings extends Rangers{
         return location;
     }
 
-    @Override
-    public String getRangerName() {
-        return rangerName;
-    }
+
 
     public int getWildlifeId() {
         return wildlifeId;

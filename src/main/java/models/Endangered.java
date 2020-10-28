@@ -1,13 +1,8 @@
 package models;
 
-public class Endangered {
-    private String dangerName;
-    private int id;
+public class Endangered extends Wildlife{
     private int age;
     private String health;
-    private int locationId;
-    private int rangerId;
-
 
     public static final String HEALTHY ="healthy";
     public static final String OKAY ="okay";
@@ -16,28 +11,9 @@ public class Endangered {
     public static final String YOUNG ="young";
     public static final String ADULT ="adult";
 
-    public Endangered(String dangerName, int age, String health, int locationId, int rangerId) {
-        this.dangerName = dangerName;
-        this.age = age;
-        this.health = health;
-        this.locationId = locationId;
-        this.rangerId = rangerId;
+    private static final String DATABASE_TYPE = "endangered";
 
-    }
-
-    public String getDangerName() {
-        return dangerName;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public String getHealth() {
-        return health;
+    public Endangered(String name) {
+        this.name = name;
     }
 }
