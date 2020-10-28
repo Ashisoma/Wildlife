@@ -8,7 +8,6 @@ public interface Sql2oSightings {
 
     List<Sightings> getAllSightings();
 
-     void addSightings(Sightings sightings);
 
-
+    void addSightings(String location, String ranger, int animalId);
 }
