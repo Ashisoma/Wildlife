@@ -32,8 +32,7 @@ public class App {
 
 
         get("/", (req, res) -> {
-            Map<String,Object> add = new HashMap<>();
-            return new ModelAndView(add, "index.hbs");
+            return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
 
