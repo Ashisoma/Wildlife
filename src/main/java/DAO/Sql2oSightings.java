@@ -9,5 +9,5 @@ public interface Sql2oSightings {
     List<Sightings> getAllSightings();
 
 
-    void addSightings(String location, String ranger, int animalId);
+    void addSightings(Sightings sightings);
 }

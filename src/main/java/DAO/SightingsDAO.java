@@ -34,6 +34,7 @@ public class SightingsDAO implements Sql2oSightings {
         try(Connection conn = sql2o.open()){
             int id = (int) conn.createQuery(sql, true)
                     .bind(sightings)
+                    .throwOnMappingFailure(false)
                     .executeUpdate()
                     .getKey();
             sightings.getId();

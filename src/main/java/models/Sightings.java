@@ -20,7 +20,9 @@ public class Sightings {
         return location;
     }
 
-
+    public String getRangerName() {
+        return rangerName;
+    }
 
     public int getWildlifeId() {
         return wildlifeId;

@@ -15,8 +15,12 @@ public class App {
     public static void main(String[] args) {
         System.out.println("WE ARE ON");
 
-        String connectionString = "jdbc:postgresql://localhost:5432/wildlife";
-        Sql2o sql2o = new Sql2o(connectionString, "moringa", "Access");
+        staticFileLocation("/public");
+
+        String connectionString = "jdbc:h2:~/Wildlife.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        //String connectionString = "jdbc:postgresql://localhost:5432/wildlife";
+        Sql2o sql2o = new Sql2o(connectionString, "", "");
+       // Sql2o sql2o = new Sql2o(connectionString, "moringa", "Access");
         Sql2oAnimalDAO sql2oAnimalDAO = new Sql2oAnimalDAO(sql2o);
         SightingsDAO sightingsDAO = new SightingsDAO(sql2o);
         EndangeredDAO endangeredDAO = new EndangeredDAO(sql2o);
@@ -36,7 +40,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
 
-        post("/wildlife/new", (request, response) -> {
+        post("/add-wildlife", (request, response) -> {
             int animalId = Integer.parseInt(request.queryParams("animalId"));
             String location = request.queryParams("location");
             String name = request.queryParams("name");
@@ -45,10 +49,12 @@ public class App {
             String health = request.queryParams("health");
             if (age == null && health == null) {
                 Animal animal = new Animal(name);
-                sql2oAnimalDAO.addAnimal(animal);
+               // sql2oAnimalDAO.addAnimal(animal);
+                wildlifeDAO.addAnimalName(name);
             } else {
                 Endangered endangered = new Endangered(name);
-                endangeredDAO.addEndangered(endangered);
+               // endangeredDAO.addEndangered(endangered);
+                wildlifeDAO.addAnimalName(name);
                 endangeredDAO.saveHealthOfAnimal(health);
                 endangeredDAO.saveAgeOfAnimal(age);
             }
@@ -58,7 +64,7 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
-        get("all-animals", (request, response) -> {
+        get("/all-animals", (request, response) -> {
             model.put("sightings", sightingsDAO.getAllSightings());
             model.put("animals", sql2oAnimalDAO.getAllAnimals());
             model.put("endangeredAnimals", endangeredDAO.getAllEndangeredAnimals());

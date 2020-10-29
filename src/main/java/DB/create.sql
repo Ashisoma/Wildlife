@@ -1,4 +1,4 @@
-SET MODE PostgreSQL;
+SET MODE Postgresql;
 
 CREATE DATABASE wildlife;
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface Sql2oWildlife {
 
-    void addWildlife();
+    void addAnimalName(String name);
 
 
 }

@@ -15,6 +15,7 @@ public class Sql2oAnimalDAO implements AnimalDAO{
         this.sql2o = sql2o;
     }
 
+
     @Override
     public List<Animal> getAllAnimals() {
         String sql = "SELECT * FROM animals WHERE type='animal'  ";
