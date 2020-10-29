@@ -2,6 +2,7 @@ package DAO;
 
 import models.Animal;
 import models.Endangered;
+import models.Wildlife;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -25,6 +26,18 @@ public class EndangeredDAO implements Sql2oEndangered{
         }catch (Sql2oException ex){
             System.out.println(ex);
             return null;
+        }
+    }
+
+    public void addAnimalName(String name) {
+        try (Connection con = sql2o.open()) {
+            String sql = "INSERT INTO animals(animalName, type) VALUES(:animalName,'endangered')";
+            Wildlife.id = (int) con.createQuery(sql, true)
+                    .addParameter("animalName",name)
+                    .throwOnMappingFailure(false)
+                    .executeUpdate()
+                    .getKey();
+
         }
     }
 

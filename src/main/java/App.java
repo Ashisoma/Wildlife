@@ -18,10 +18,10 @@ public class App {
         staticFileLocation("/public");
 
         //String connectionString = "jdbc:h2:~/Wildlife.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        String connectionString = "jdbc:postgresql://ec2-52-71-55-81.compute-1.amazonaws.com:5432/drmtbhcoiev0d";
-        //String connectionString = "jdbc:postgresql://localhost:5432/wildlife";
-        Sql2o sql2o = new Sql2o(connectionString, "yxezrizrnsgbzx", "3f04c3ed6717068d1037f413fd74c017d3f7a4ff6a2058a2494805d2784ae2c9");
-       // Sql2o sql2o = new Sql2o(connectionString, "moringa", "Access");
+        //String connectionString = "jdbc:postgresql://ec2-52-71-55-81.compute-1.amazonaws.com:5432/drmtbhcoiev0d";
+        String connectionString = "jdbc:postgresql://localhost:5432/mywildlife";
+        //Sql2o sql2o = new Sql2o(connectionString, "yxezrizrnsgbzx", "3f04c3ed6717068d1037f413fd74c017d3f7a4ff6a2058a2494805d2784ae2c9");
+        Sql2o sql2o = new Sql2o(connectionString, "moringa", "Access");
         Sql2oAnimalDAO sql2oAnimalDAO = new Sql2oAnimalDAO(sql2o);
         SightingsDAO sightingsDAO = new SightingsDAO(sql2o);
         EndangeredDAO endangeredDAO = new EndangeredDAO(sql2o);
@@ -50,12 +50,12 @@ public class App {
             String health = request.queryParams("health");
             if (age == null && health == null) {
                 Animal animal = new Animal(name);
-               // sql2oAnimalDAO.addAnimal(animal);
-                wildlifeDAO.addAnimalName(name);
+                sql2oAnimalDAO.addAnimalName(name);
+                //wildlifeDAO.addAnimalName(animal);
             } else {
                 Endangered endangered = new Endangered(name);
-               // endangeredDAO.addEndangered(endangered);
-                wildlifeDAO.addAnimalName(name);
+                endangeredDAO.addAnimalName(name);
+                //wildlifeDAO.addAnimalName(endangered);
                 endangeredDAO.saveHealthOfAnimal(health);
                 endangeredDAO.saveAgeOfAnimal(age);
             }

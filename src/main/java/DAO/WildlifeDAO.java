@@ -18,12 +18,11 @@ public class WildlifeDAO implements Sql2oWildlife  {
     }
 
     @Override
-    public void addAnimalName(String name) {
+    public void addAnimalName(Wildlife wildlife) {
         try (Connection con = sql2o.open()) {
-            String sql = "INSERT INTO animals(name, type) VALUES(:name,:type)";
+            String sql = "INSERT INTO animals(animalName, type) VALUES(:animalName,:type)";
             Wildlife.id = (int) con.createQuery(sql, true)
-                    .addParameter("name", Wildlife.name)
-                    .addParameter("type", Wildlife.type)
+                    .bind(wildlife)
                     .throwOnMappingFailure(false)
                     .executeUpdate()
                     .getKey();
