@@ -17,9 +17,10 @@ public class App {
 
         staticFileLocation("/public");
 
-        String connectionString = "jdbc:h2:~/Wildlife.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        //String connectionString = "jdbc:h2:~/Wildlife.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        String connectionString = "jdbc:postgresql://ec2-52-71-55-81.compute-1.amazonaws.com:5432/drmtbhcoiev0d";
         //String connectionString = "jdbc:postgresql://localhost:5432/wildlife";
-        Sql2o sql2o = new Sql2o(connectionString, "", "");
+        Sql2o sql2o = new Sql2o(connectionString, "yxezrizrnsgbzx", "3f04c3ed6717068d1037f413fd74c017d3f7a4ff6a2058a2494805d2784ae2c9");
        // Sql2o sql2o = new Sql2o(connectionString, "moringa", "Access");
         Sql2oAnimalDAO sql2oAnimalDAO = new Sql2oAnimalDAO(sql2o);
         SightingsDAO sightingsDAO = new SightingsDAO(sql2o);
@@ -31,7 +32,8 @@ public class App {
 
 
         get("/", (req, res) -> {
-            return new ModelAndView(model, "index.hbs");
+            Map<String,Object> add = new HashMap<>();
+            return new ModelAndView(add, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
 
