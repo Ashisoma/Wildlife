@@ -10,5 +10,7 @@ public interface Sql2oWildlife {
 
     void addAnimalName(Wildlife wildlife);
 
+    List<Wildlife> getAllWildlife();
+
 
 }

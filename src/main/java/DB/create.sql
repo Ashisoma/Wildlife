@@ -9,7 +9,7 @@ id SERIAL PRIMARY KEY,
 animalName VARCHAR,
 type VARCHAR,
 health VARCHAR,
-age INTEGER
+age VARCHAR
 );
 
 CREATE  TABLE IF NOT EXISTS sightings (

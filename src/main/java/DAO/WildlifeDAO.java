@@ -30,4 +30,31 @@ public class WildlifeDAO implements Sql2oWildlife  {
         }
     }
 
+
+
+    @Override
+    public List<Wildlife> getAllWildlife(){
+        String sql = "SELECT * FROM animals";
+        try (Connection con = sql2o.open()){
+            return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(Wildlife.class);
+        }catch (Sql2oException ex){
+            System.out.println(ex);
+            return null;
+        }
+    }
+    public List<Endangered> getDangerAnimal() {
+        try (Connection con = sql2o.open()) {
+            String sql = "SELECT * FROM animals WHERE type='endangered'";
+            try (Connection conn = sql2o.open()) {
+                return (List<Endangered>) con.createQuery(sql)
+                        .executeAndFetch(Endangered.class);
+            } catch (Sql2oException ex) {
+                System.out.println(ex);
+                return null;
+            }
+        }
+    }
+
 }

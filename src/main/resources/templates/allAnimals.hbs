@@ -1,41 +1,79 @@
 {{#partial "content"}}
-    {{#if animals}}
-        <h2 class="text-center" style="color:white;">Common animals</h2>
-        <div class="container">
-            <div class="row">
+<!--    <div class="card">-->
+<!--    {{#if animals}}-->
+<!--        <h1 class="text-white"> {{type}}</h1>-->
+<!--        <h2 class="text-center" style="color:white;">Non-endangered animals</h2>-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                {{#each animals}}-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="card p-4 mt-2">-->
+<!--                            <h3>Animal species: {{ name }}</h3>-->
+<!--                            <p>Type: {{ type }}</p>-->
+<!--                            <p>Location: {{location}}</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                {{/each}}-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <hr class="mt-4 mb-4">-->
+<!--    {{else}}-->
+<!--        <h1 class="text-center">No animal to track.</h1>-->
+<!--    {{/if}}-->
+<!--    </div>-->
+<!--    {{#if endangered}}-->
+<!--        <h2 class="text-center" style="color: red">Endangered animals</h2>-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                {{#each endangered}}-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="card p-4 mt-2">-->
+<!--                            <h3>Animal species: {{ name }}</h3>-->
+<!--                            <p>Type: {{ type }}</p>-->
+<!--                            <p>Age: {{age}}</p>-->
+<!--                            <p>Health status: {{health}}</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                {{/each}}-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    {{else}}-->
+<!--        <h2>No endangered animal at the moment</h2>-->
+<!--    {{/if}}-->
+    <section class="container">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Animal's Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Animal's</th>
+                    <th scope="col">Health Condition</th>
+                </tr>
+                </thead>
+            <tbody class="font-weight-weight">
+                {{#if animals}}
                 {{#each animals}}
-                    <div class="col-md-4">
-                        <div class="card p-4 mt-2">
-                            <h3>Animal species: {{name}}</h3>
-                            <p>Type: {{type}}</p>
-                            <p>{{location}}</p>
-                        </div>
-                    </div>
+                <tr>
+                    <td>{{ animalName }}</td>
+                    <td>{{ type }}</td>
+                    <td>{{ age }}</td>
+                    <td>{{ health }}</td>
+                </tr>
                 {{/each}}
-            </div>
-        </div>
-        <hr class="mt-4 mb-4">
-    {{else}}
-        <h1 class="text-center">No animal to track.</h1>
-    {{/if}}
-    {{#if endangeredAnimals}}
-        <h2 class="text-center" style="color: red">Endangered animals</h2>
-        <div class="container">
-            <div class="row">
-                {{#each endangeredAnimals}}
-                    <div class="col-md-4">
-                        <div class="card p-4 mt-2">
-                            <h3>Animal species: {{name}}</h3>
-                            <p>Type: {{type}}</p>
-                            <p>Age: {{age}}</p>
-                            <p>Health status: {{health}}</p>
-                        </div>
-                    </div>
-                {{/each}}
-            </div>
-        </div>
-    {{else}}
-        <h2>No endangered animal at the moment</h2>
-    {{/if}}
+                {{/if}}
+                {{#if common}}
+                    {{#each common}}
+                    <tr>
+                        <td>{{ animalName }}</td>
+                        <td>{{ type }}</td>
+                        <td> --- </td>
+                        <td> --- </td>
+                    </tr>
+                    {{/each}}
+                {{/if}}
+            </tbody>
+            </table>
+    </section>
+
 {{/partial}}
 {{>layout.hbs}}
