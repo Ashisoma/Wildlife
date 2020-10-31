@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&display=swap');
+*{
+font-family: 'Balsamiq Sans', cursive;
+}
 body{
   background-image: url("/images/lion.jpg");
   background-size:cover;
   background-color: #cccccc;
-  background-position: center;
+  background-position: auto;
   background-repeat: no-repeat;
   background-size: cover;
 
