@@ -16,8 +16,7 @@ The app is meant for ranger to use to track animals and endangered animals, wher
 -Create database CREATE DATABASE database_name
 -Connect to the DB \c database_name
 -Create table CREATE TABLE table_name(name varchar)
-
-## In PSQL:
+### In PSQL:
  - CREATE DATABASE wildlife_tracker;
  - CREATE TABLE animals (id serial PRIMARY KEY, animalName varchar ,type varchar ,age varchar, health varchar);
  - CREATE TABLE sightings (id serial PRIMARY KEY, location varchar, rangerName varchar, wildlifeId int );
