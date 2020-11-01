@@ -28,8 +28,8 @@ The app is meant for ranger to use to track animals and endangered animals, wher
 - Heroku CLI
 - Intellij Idea
 
-### Figma link
-https://www.figma.com/proto/ksuyplSSAZkunxCocmXXPt/Heronesmus?node-id=1%3A3&scaling=min-zoom
+### Landing page Figma link
+https://www.figma.com/proto/cXZoydh0x8rCbTfGSjXtQq/Trackwild?node-id=1%3A2&scaling=min-zoom
 
 ## Contribution
 You can fork the repo and add your extra feature to the web app. Click on the following link to fork: https://github.com/Ashisoma/Wlildlife
