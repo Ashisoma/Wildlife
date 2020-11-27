@@ -1,1 +1,1 @@
-web: ./build/install/wildtracker/bin
+web: ./build/install/trackwild/bin

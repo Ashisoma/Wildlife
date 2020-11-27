@@ -6,7 +6,7 @@
                 {{#each animals}}
                     <div class="col-md-4">
                         <div class="card p-4 mt-2">
-                            <h3>Animal species: {{name}}</h3>
+                            <h3>Animal species: {{animalName}}</h3>
                             <p>Type: {{type}}</p>
                             <p>{{location}}</p>
                         </div>
@@ -24,7 +24,7 @@
             <div class="row">
                 {{#each endangeredAnimals}}
                     <div class="col-md-4">
-                        <div class="card p-4 mt-2">
+                        <div class="card p-4 mt-2 bg-dark">
                             <h3>Animal species: {{name}}</h3>
                             <p>Type: {{type}}</p>
                             <p>Age: {{age}}</p>

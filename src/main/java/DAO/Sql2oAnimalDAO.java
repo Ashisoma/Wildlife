@@ -29,4 +29,18 @@ public class Sql2oAnimalDAO implements AnimalDAO{
         }
     }
 
+    @Override
+    public void addAnimal(Animal animal) {
+        try (Connection con = sql2o.open()) {
+            String sql = "INSERT INTO animals(animalName, health, type) VALUES(:animalName,:health ,:type)";
+            int id = (int) con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .bind(animal)
+                    .executeUpdate()
+                    .getKey();
+            animal.setId(id);
+        }
+    }
+
+
 }

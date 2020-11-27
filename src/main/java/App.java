@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,14 +19,14 @@ public class App {
         staticFileLocation("/public");
 
         //String connectionString = "jdbc:h2:~/Wildlife.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        String connectionString = "jdbc:postgresql://ec2-52-71-55-81.compute-1.amazonaws.com:5432/drmtbhcoiev0d";
-        //String connectionString = "jdbc:postgresql://localhost:5432/wildlife";
-        Sql2o sql2o = new Sql2o(connectionString, "yxezrizrnsgbzx", "3f04c3ed6717068d1037f413fd74c017d3f7a4ff6a2058a2494805d2784ae2c9");
-       // Sql2o sql2o = new Sql2o(connectionString, "moringa", "Access");
-        Sql2oAnimalDAO sql2oAnimalDAO = new Sql2oAnimalDAO(sql2o);
-        SightingsDAO sightingsDAO = new SightingsDAO(sql2o);
-        EndangeredDAO endangeredDAO = new EndangeredDAO(sql2o);
-        WildlifeDAO wildlifeDAO = new WildlifeDAO(sql2o);
+        //String connectionString = "jdbc:postgresql://ec2-52-71-55-81.compute-1.amazonaws.com:5432/drmtbhcoiev0d";
+        String connectionString = "jdbc:postgresql://localhost:5432/wildlife";
+        //Sql2o sql2o = new Sql2o(connectionString, "yxezrizrnsgbzx", "3f04c3ed6717068d1037f413fd74c017d3f7a4ff6a2058a2494805d2784ae2c9");
+        Sql2o sql2o = new Sql2o(connectionString, "moringa", "Access");
+//        Sql2oAnimalDAO sql2oAnimalDAO = new Sql2oAnimalDAO(sql2o);
+//        SightingsDAO sightingsDAO = new SightingsDAO(sql2o);
+//        EndangeredDAO endangeredDAO = new EndangeredDAO(sql2o);
+//        WildlifeDAO wildlifeDAO = new WildlifeDAO(sql2o);
 
 
         Map<String, Object> model = new HashMap<>();
@@ -44,36 +45,57 @@ public class App {
         post("/add-wildlife", (request, response) -> {
             int animalId = Integer.parseInt(request.queryParams("animalId"));
             String location = request.queryParams("location");
-            String name = request.queryParams("name");
-            String ranger = request.queryParams("ranger");
+            String name = request.queryParams("animalName");
+            String ranger = request.queryParams("rangerName");
             String age = request.queryParams("age");
             String health = request.queryParams("health");
             if (age == null && health == null) {
                 Animal animal = new Animal(name);
                // sql2oAnimalDAO.addAnimal(animal);
-                wildlifeDAO.addAnimalName(name);
+                animal.addAnimalName();
             } else {
                 Endangered endangered = new Endangered(name);
                // endangeredDAO.addEndangered(endangered);
-                wildlifeDAO.addAnimalName(name);
-                endangeredDAO.saveHealthOfAnimal(health);
-                endangeredDAO.saveAgeOfAnimal(age);
+                endangered.addAnimalName();
+                endangered.saveHealthOfAnimal(health);
+                endangered.saveAgeOfAnimal(age);
+                //endangeredDAO.saveHealthOfAnimal(health);
+                //endangeredDAO.saveAgeOfAnimal(age);
             }
             Sightings sightings = new Sightings(location, ranger, animalId);
-            sightingsDAO.addSightings(sightings);
+            //sightingsDAO.addSightings(sightings);
+            sightings.all();
             response.redirect("/all-animals");
             return null;
         }, new HandlebarsTemplateEngine());
 
-        get("/all-animals", (request, response) -> {
-            model.put("sightings", sightingsDAO.getAllSightings());
-            model.put("animals", sql2oAnimalDAO.getAllAnimals());
-            model.put("endangeredAnimals", endangeredDAO.getAllEndangeredAnimals());
-            return new ModelAndView(model, "allAnimals.hbs");
-        }, new HandlebarsTemplateEngine());
+//        get("/all-animals", (request, response) -> {
+//            model.put("sightings", sightingsDAO.getAllSightings());
+//            model.put("animals", sql2oAnimalDAO.getAllAnimals());
+//            model.put("endangeredAnimals", endangeredDAO.getAllEndangeredAnimals());
+//            return new ModelAndView(model, "allAnimals.hbs");
+//        }, new HandlebarsTemplateEngine());
 
-        get("/sightings", (request, response) -> {
-            model.put("sightings", sightingsDAO.getAllSightings());
+//        get("/sightings", (request, response) -> {
+//            model.put("sightings", sightingsDAO.getAllSightings());
+//            return new ModelAndView(model, "sightings.hbs");
+//        }, new HandlebarsTemplateEngine());
+
+        get("all-animals", (request, response) -> {
+            List<Animal> animals = Animal.getAllAnimals();
+            List<Endangered> endangeredAnimals = Endangered.getAllEndangeredAnimals();
+            List<Sightings> sightings = Sightings.all();
+            model.put("sightings", sightings);
+            //model.put("", endangeredAnimals)
+            model.put("animals", animals);
+            model.put("endangeredAnimals", endangeredAnimals);
+            return new ModelAndView(model, "allAnimals.hbs");
+        }, new HandlebarsTemplateEngine() );
+
+        get("/sightings",(request, response) -> {
+
+            List<Sightings> sightings = Sightings.all();
+            model.put("sightings", sightings);
             return new ModelAndView(model, "sightings.hbs");
         }, new HandlebarsTemplateEngine());
     }

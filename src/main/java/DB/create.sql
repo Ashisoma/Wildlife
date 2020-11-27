@@ -1,22 +1,18 @@
-SET MODE Postgresql;
 
-CREATE DATABASE wildlife;
+CREATE DATABASE wildlife_tracks;
 
-\c wildlife
+\c wildlife wildlife_tracks;
 
 CREATE  TABLE IF NOT EXISTS animals (
 id SERIAL PRIMARY KEY,
 animalName VARCHAR,
 type VARCHAR,
 health VARCHAR,
-age INTEGER
+age INTEGER,
+location VARCHAR,
+rangerName VARCHAR
 );
 
-CREATE  TABLE IF NOT EXISTS sightings (
-id SERIAL PRIMARY KEY,
-location VARCHAR,
-rangerName VARCHAR,
-wildlifeId INTEGER
-);
+
 
 

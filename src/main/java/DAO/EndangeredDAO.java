@@ -8,7 +8,9 @@ import org.sql2o.Sql2oException;
 
 import java.util.List;
 
-public class EndangeredDAO implements Sql2oEndangered{
+public class EndangeredDAO implements Sql2oEndangered {
+    public  final String DATABASE_TYPE = "animal";
+
     private final Sql2o sql2o;
 
     public EndangeredDAO(Sql2o sql2o) {
@@ -29,26 +31,17 @@ public class EndangeredDAO implements Sql2oEndangered{
     }
 
     @Override
-    public void saveAgeOfAnimal(String age) {
-        String sql ="UPDATE animals SET age=:age WHERE id=:id";
-        try (Connection con = sql2o.open()){
-            con.createQuery(sql)
-                    .addParameter("age", age)
-                    .addParameter("id", Endangered.id)
-                    .executeUpdate();
-        }
-
-    }
-
-    @Override
-    public void saveHealthOfAnimal(String health) {
-        String sql = "UPDATE animals SET health=:health WHERE id=:id";
+    public void addEndangeredAnimal(Endangered endangered) {
         try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
-                    .addParameter("health", health)
-                    .addParameter("id", Endangered.id)
-                    .executeUpdate();
+            String sql = "INSERT INTO animals(animalName, health, type) VALUES(:animalName,:health ,:type)";
+            int id = (int) con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .bind(endangered)
+                    .executeUpdate()
+                    .getKey();
+        endangered.setId(id);
         }
     }
+
 }
 

@@ -15,4 +15,23 @@ public class Animal extends Wildlife {
 
     }
 
+    public static String getDatabaseType() {
+        return DATABASE_TYPE;
+    }
+
+    public static List<Animal> getAllAnimals() {
+        String sql = "SELECT * FROM animals WHERE type='animal'  ";
+        try(Connection con = DB.sql2o.open()){
+            return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(Animal.class);
+        }catch (Sql2oException ex){
+            System.out.println(ex);
+            return null;
+        }
+
+    }
+
+    public void setId(int id) {
+    }
 }
